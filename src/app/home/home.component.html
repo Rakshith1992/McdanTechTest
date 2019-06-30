@@ -1,0 +1,66 @@
+<nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo center">
+        <i class="material-icons">cloud</i>My Web Application</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li>
+          <a (click)="Logout()">Logout</a>
+        </li>
+      </ul>
+    </div>
+</nav>
+
+
+<div class="row">
+  <div class="input-field col s6">
+    <button type="button" class="btn btn-primary" (click)="viewWell()">View Wells</button>
+  </div>
+  <h4>Select an ID</h4>
+    <mat-form-field>
+      <mat-label>Select an ID</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let item of wellData" [value]="item.id">
+          {{item.id}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+</div>
+
+
+
+
+
+
+<div class="table-responsive table-wrapper-scroll-y my-custom-scrollbar">     
+    <table matSort (matSortChange)="sortData($event)" matSortStart="desc" class="table table-bordered table-striped mb-0">
+        <!-- <table matSort (matSortChange)="sortData($event)" matSortActive="Amount" matSortStart="desc" class="table table-bordered table-striped mb-0" > -->
+      <tr>
+        <th ></th>
+        <th mat-sort-header="ID">ID</th>
+        <th mat-sort-header="UWID" >UWID</th>
+        <th mat-sort-header="WELLNAME">WELL NAME</th>
+        <th mat-sort-header="LICENSENUMBER">LICENSE NUMBER</th>
+        <th mat-sort-header="AREA">AREA</th>
+        <th mat-sort-header="FIELD">FIELD</th>
+        <th mat-sort-header="TOTALDEPTH">TOTAL DEPTH</th>
+        <th mat-sort-header="DRILLDATE">DRILL DATE</th>
+        <th mat-sort-header="STATUS">STATUS</th>
+        <!-- <th mat-sort-header="Category" *ngIf="showCategory">Category</th> -->
+      </tr>
+    
+      <tr *ngFor="let item of wellData">
+        <td><input type="checkbox"></td>
+        <td>{{item.id}}</td>
+        <td>{{item.uwid}}</td>
+        <td>{{item.wellName}}</td>
+        <td>{{item.licenseNumber}}</td>
+        <td>{{item.area}}</td>
+        <td>{{item.field}}</td>
+        <td>{{item.totalDepth}}</td>
+        <td>{{item.drillDate}}</td>
+        <td>{{item.status}}</td>
+        <!-- <td *ngIf="showCategory">{{item.Category}}</td> --> 
+      </tr>
+    </table>
+</div>
+  
