@@ -12,19 +12,47 @@
 
 
 <div class="row">
-  <div class="input-field col s6">
+  <div class="input-field col s3">
+      <h5>Display All Wells</h5>
     <button type="button" class="btn btn-primary" (click)="viewWell()">View Wells</button>
   </div>
-  <h4>Select an ID</h4>
+
+  <div class="input-field col s3">
+    <h5>Select an ID</h5>
     <mat-form-field>
       <mat-label>Select an ID</mat-label>
-      <mat-select>
-        <mat-option *ngFor="let item of wellData" [value]="item.id">
+      <mat-select [(ngModel)]="wellID"  (ngModelChange)="viewWell1($event)">
+        <mat-option *ngFor="let item of tempWells" [value]="item.id">
           {{item.id}}
         </mat-option>
-      </mat-select>
+      </mat-select>                                                                 
     </mat-form-field>
-</div>
+  </div>
+
+  <div class="input-field col s3">
+      <h5>Select a UWID</h5>
+      <mat-form-field>
+        <mat-label>Select a UWID</mat-label>
+        <mat-select [(ngModel)]="UWID"  (ngModelChange)="getUWID($event)">
+          <mat-option *ngFor="let item of tempWells" [value]="item.uwid">
+            {{item.uwid}}
+          </mat-option>
+        </mat-select>                                                                 
+      </mat-form-field>
+    </div>
+
+    <div class="input-field col s3">
+        <h5>CRUD Operations</h5>
+      <button type="button" class="btn btn-primary" (click)="crudOperation()">CRUD</button>
+    </div>
+  
+ 
+ 
+ <!--  <div class="input-field col s4">
+      <h5>Reset The Filter</h5>
+    <button type="button" class="btn btn-primary" (click)="resetTheFilter()">Reset The Filter</button>
+  </div>  
+</div> -->
 
 
 
@@ -32,7 +60,7 @@
 
 
 <div class="table-responsive table-wrapper-scroll-y my-custom-scrollbar">     
-    <table matSort (matSortChange)="sortData($event)" matSortStart="desc" class="table table-bordered table-striped mb-0">
+    <table  class="table table-bordered table-striped mb-0">
         <!-- <table matSort (matSortChange)="sortData($event)" matSortActive="Amount" matSortStart="desc" class="table table-bordered table-striped mb-0" > -->
       <tr>
         <th ></th>
@@ -45,11 +73,13 @@
         <th mat-sort-header="TOTALDEPTH">TOTAL DEPTH</th>
         <th mat-sort-header="DRILLDATE">DRILL DATE</th>
         <th mat-sort-header="STATUS">STATUS</th>
+        <th mat-sort-header="STATUS">DELETE</th>
+        <th mat-sort-header="STATUS">Edit</th>
         <!-- <th mat-sort-header="Category" *ngIf="showCategory">Category</th> -->
       </tr>
     
       <tr *ngFor="let item of wellData">
-        <td><input type="checkbox"></td>
+        <td></td>
         <td>{{item.id}}</td>
         <td>{{item.uwid}}</td>
         <td>{{item.wellName}}</td>
@@ -59,7 +89,8 @@
         <td>{{item.totalDepth}}</td>
         <td>{{item.drillDate}}</td>
         <td>{{item.status}}</td>
-        <!-- <td *ngIf="showCategory">{{item.Category}}</td> --> 
+        <td><button type="button" class="btn btn-primary" (click)="deleteAWell(item.id)">Delete</button></td>
+        <td><button type="button" class="btn btn-primary" (click)="editAWell(item)">Edit</button></td>
       </tr>
     </table>
 </div>

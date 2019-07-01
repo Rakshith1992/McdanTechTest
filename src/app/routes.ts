@@ -4,9 +4,11 @@ import { UserComponent } from './user/user.component';
 import { SignUpComponent } from './user/sign-up/sign-up.component';
 import { SignInComponent } from './user/sign-in/sign-in.component';
 import { AuthGuard } from './auth/auth.guard';
+import { CrudComponent } from './crud/crud.component';
 
 export const appRoutes: Routes = [
     { path: 'home', component: HomeComponent},
+    { path: 'crud', component: CrudComponent},
     {
         path: 'signup', component: UserComponent,
         children: [{ path: '', component: SignUpComponent }]
@@ -16,5 +18,6 @@ export const appRoutes: Routes = [
         children: [{ path: '', component: SignInComponent }]
     },
     { path : '', redirectTo:'/login', pathMatch : 'full'}
+
     
 ];

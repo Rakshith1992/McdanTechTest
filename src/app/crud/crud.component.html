@@ -1,0 +1,97 @@
+<nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo center">
+        <i class="material-icons">cloud</i>My Web Application</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li>
+          <a (click)="Logout()">Logout</a>
+        </li>
+      </ul>
+    </div>
+</nav>
+
+<h1>CREATE A NEW WELL</h1>
+
+<form #loginForm="ngForm" class="col s12 white" (ngSubmit)="OnSubmit(well.uwid,well.wellName,well.licenseNumber,well.area,well.field,well.totalDepth,well.drillDate,well.status)">
+  
+  <div class="row">
+    <div *ngIf= "currentWell" class="input-field col s12">
+      <input type="text" #uwid ngModel name="uwid" placeholder = "UWID" [(ngModel)]="currentWell.uwid" required>
+    </div>
+    <div *ngIf= "!currentWell" class="input-field col s12">
+        <input type="text" #uwid ngModel name="uwid" placeholder = "UWID" [(ngModel)]="well.uwid" required>
+      </div>
+  </div>
+
+  <div class="row">
+    <div *ngIf= "currentWell" class="input-field col s12">
+            <input type="text" #wellName ngModel name="wellName" placeholder="Well Name" [(ngModel)]="currentWell.wellName" required>
+          </div>
+          <div *ngIf= "!currentWell" class="input-field col s12">
+      <input type="text" #wellName ngModel name="wellName" placeholder="Well Name" [(ngModel)]="well.wellName" required>
+    </div>
+  </div>
+
+  <div class="row">
+      <div *ngIf= "currentWell" class="input-field col s12">
+        <input type="text" #licenseNumber ngModel name="licenseNumber" placeholder="License Number" [(ngModel)]="currentWell.licenseNumber" >
+      </div>
+      <div *ngIf= "!currentWell" class="input-field col s12">
+          <input type="text" #licenseNumber ngModel name="licenseNumber" placeholder="License Number" [(ngModel)]="well.licenseNumber" >
+      </div>
+    </div>
+
+  <div class="row">
+      <div *ngIf= "currentWell" class="input-field col s12">
+        <input type="text" #area ngModel name="area" placeholder="Area" [(ngModel)]="currentWell.area" >
+      </div>
+      <div *ngIf= "!currentWell" class="input-field col s12">
+          <input type="text" #area ngModel name="area" placeholder="Area" [(ngModel)]="well.area" >
+        </div>
+    </div>
+
+    <div class="row">
+        <div *ngIf= "currentWell" class="input-field col s12">
+          <input type="text" #field ngModel name="field" placeholder="Field" [(ngModel)]="currentWell.field" >
+        </div>
+        <div *ngIf= "!currentWell" class="input-field col s12">
+            <input type="text" #field ngModel name="field" placeholder="Field" [(ngModel)]="well.field" >
+          </div>
+      </div>
+
+      <div class="row">
+          <div *ngIf= "currentWell" class="input-field col s12">
+            <input type="text" #totalDepth ngModel name="totalDepth" placeholder="Total Depth" [(ngModel)]="currentWell.totalDepth" >
+          </div>
+          <div *ngIf= "!currentWell" class="input-field col s12">
+              <input type="text" #totalDepth ngModel name="totalDepth" placeholder="Total Depth" [(ngModel)]="well.totalDepth" >
+            </div>
+        </div>
+        
+        <div class="row">
+            <div *ngIf= "currentWell" class="input-field col s12">
+              <input type="text" #drillDate ngModel name="drillDate" placeholder="Drill Date" [(ngModel)]="currentWell.drillDate" >
+            </div>
+            <div *ngIf= "!currentWell" class="input-field col s12">
+                <input type="text" #drillDate ngModel name="drillDate" placeholder="Drill Date" [(ngModel)]="well.drillDate" >
+              </div>
+          </div>
+
+          <div class="row">
+              <div *ngIf= "currentWell" class="input-field col s12">
+                <input type="text" #status ngModel name="status" placeholder="Status" [(ngModel)]="currentWell.status" >
+              </div>
+              <div *ngIf= "!currentWell" class="input-field col s12">
+                  <input type="text" #status ngModel name="status" placeholder="Status" [(ngModel)]="well.status" >
+                </div>
+            </div>  
+
+            <div class="row">
+                <div *ngIf = "currentWell" class="input-field col s12">
+                  <button [disabled]="!loginForm.valid" class="btn-large btn-submit" type="submit">UPDATE</button>
+                </div>
+                <div *ngIf = "!currentWell" class="input-field col s12">
+                    <button [disabled]="!loginForm.valid" class="btn-large btn-submit" type="submit">CREATE</button>
+                </div>
+            </div>  
+ </form> 

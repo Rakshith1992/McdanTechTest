@@ -1,5 +1,5 @@
 export class Well {
-    id: number;
+    id?: number;
     uwid: string;
     wellName: string;
     licenseNumber: null;
