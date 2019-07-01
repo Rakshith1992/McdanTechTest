@@ -15,7 +15,8 @@ import { SignUpComponent } from './user/sign-up/sign-up.component';
 import { appRoutes } from './routes';
 import { AuthGuard } from './auth/auth.guard';
 import { MatFormFieldModule, MatSelectModule} from '@angular/material';
-import { CrudComponent } from './crud/crud.component';
+import { HistoryComponent } from './history/history.component';
+import { CreateComponent } from './create-well/create.component';
 //import { AuthInterceptor } from './auth/auth.interceptor';
 
 
@@ -26,7 +27,8 @@ import { CrudComponent } from './crud/crud.component';
     UserComponent,
     SignInComponent,
     HomeComponent,
-    CrudComponent
+    CreateComponent,
+    HistoryComponent
   ],
   imports: [
     BrowserModule,

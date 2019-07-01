@@ -4,11 +4,13 @@ import { UserComponent } from './user/user.component';
 import { SignUpComponent } from './user/sign-up/sign-up.component';
 import { SignInComponent } from './user/sign-in/sign-in.component';
 import { AuthGuard } from './auth/auth.guard';
-import { CrudComponent } from './crud/crud.component';
+import { HistoryComponent } from './history/history.component';
+import { CreateComponent } from './create-well/create.component';
 
 export const appRoutes: Routes = [
     { path: 'home', component: HomeComponent},
-    { path: 'crud', component: CrudComponent},
+    { path: 'createwell', component: CreateComponent},
+    { path: 'history', component: HistoryComponent},
     {
         path: 'signup', component: UserComponent,
         children: [{ path: '', component: SignUpComponent }]

@@ -1,10 +1,11 @@
 <nav>
     <div class="nav-wrapper">
       <a href="#" class="brand-logo center">
-        <i class="material-icons">cloud</i>My Web Application</a>
+        <i class="material-icons">cloud</i>MCDAN Web Application</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li>
-          <a (click)="Logout()">Logout</a>
+          <a *ngIf="token"  (click)="logout()">LOGOUT</a>
+          <a *ngIf="!token"  (click)="back()">BACK</a>
         </li>
       </ul>
     </div>
@@ -12,15 +13,15 @@
 
 
 <div class="row">
-  <div class="input-field col s3">
+  <div class="input-field col s2">
       <h5>Display All Wells</h5>
     <button type="button" class="btn btn-primary" (click)="viewWell()">View Wells</button>
   </div>
 
-  <div class="input-field col s3">
+  <div class="input-field col s2">
     <h5>Select an ID</h5>
     <mat-form-field>
-      <mat-label>Select an ID</mat-label>
+      <mat-label>Filter By ID</mat-label>
       <mat-select [(ngModel)]="wellID"  (ngModelChange)="viewWell1($event)">
         <mat-option *ngFor="let item of tempWells" [value]="item.id">
           {{item.id}}
@@ -29,10 +30,10 @@
     </mat-form-field>
   </div>
 
-  <div class="input-field col s3">
-      <h5>Select a UWID</h5>
+  <div class="input-field col s2">
+      <h5>Filter By UWID</h5>
       <mat-form-field>
-        <mat-label>Select a UWID</mat-label>
+        <mat-label>Select an UWID</mat-label>
         <mat-select [(ngModel)]="UWID"  (ngModelChange)="getUWID($event)">
           <mat-option *ngFor="let item of tempWells" [value]="item.uwid">
             {{item.uwid}}
@@ -41,25 +42,17 @@
       </mat-form-field>
     </div>
 
-    <div class="input-field col s3">
-        <h5>CRUD Operations</h5>
-      <button type="button" class="btn btn-primary" (click)="crudOperation()">CRUD</button>
+    <div class="input-field col s2">
+        <h5 *ngIf="token" >Create A Well</h5>
+      <button *ngIf="token" type="button" class="btn btn-primary" (click)="crudOperation()">CREATE WELL</button>
     </div>
-  
- 
- 
- <!--  <div class="input-field col s4">
-      <h5>Reset The Filter</h5>
-    <button type="button" class="btn btn-primary" (click)="resetTheFilter()">Reset The Filter</button>
-  </div>  
-</div> -->
 
+   <!--  <div class="input-field col s2">
+        <h5 *ngIf="token" >Check History</h5>
+      <button *ngIf="token" type="button" class="btn btn-primary" (click)="checkHistory()">CHECK HISTORY </button>
+    </div> -->
 
-
-
-
-
-<div class="table-responsive table-wrapper-scroll-y my-custom-scrollbar">     
+<div  class="table-responsive table-wrapper-scroll-y my-custom-scrollbar">     
     <table  class="table table-bordered table-striped mb-0">
         <!-- <table matSort (matSortChange)="sortData($event)" matSortActive="Amount" matSortStart="desc" class="table table-bordered table-striped mb-0" > -->
       <tr>
@@ -73,8 +66,10 @@
         <th mat-sort-header="TOTALDEPTH">TOTAL DEPTH</th>
         <th mat-sort-header="DRILLDATE">DRILL DATE</th>
         <th mat-sort-header="STATUS">STATUS</th>
-        <th mat-sort-header="STATUS">DELETE</th>
-        <th mat-sort-header="STATUS">Edit</th>
+        <th *ngIf="token" mat-sort-header="STATUS">DELETE</th>
+        <th *ngIf="token"  mat-sort-header="STATUS">EDIT</th>
+        <th *ngIf="token"  mat-sort-header="HISTORY">HISTORY</th>
+
         <!-- <th mat-sort-header="Category" *ngIf="showCategory">Category</th> -->
       </tr>
     
@@ -89,9 +84,13 @@
         <td>{{item.totalDepth}}</td>
         <td>{{item.drillDate}}</td>
         <td>{{item.status}}</td>
-        <td><button type="button" class="btn btn-primary" (click)="deleteAWell(item.id)">Delete</button></td>
-        <td><button type="button" class="btn btn-primary" (click)="editAWell(item)">Edit</button></td>
+        <td *ngIf="token" ><button type="button" class="btn btn-primary" (click)="deleteAWell(item.id)">Delete</button></td>
+        <td *ngIf="token" ><button type="button" class="btn btn-primary" (click)="editAWell(item)">Edit</button></td>
+        <td *ngIf="token" ><button type="button" class="btn btn-primary" (click)="getHistory(item.id)">HISTORY</button></td>
       </tr>
     </table>
+
+   
+    
 </div>
   

@@ -19,8 +19,12 @@ export class SignInComponent implements OnInit {
   }
 
   OnSubmit(userName,password){
+   // console.log("USER: ", this.user);
+    let userD= {};
+    userD =this.user;
      this.userService.userAuthentication(this.user).subscribe((data : any)=>{
        console.log(data);
+       console.log("USER: ", this.user);
       localStorage.setItem('userToken',data.token);
       console.log(localStorage.getItem('userToken'))
       this.router.navigate(['/home']);
@@ -29,5 +33,14 @@ export class SignInComponent implements OnInit {
       this.isLoginError = true;
     });
   }
+
+  anonymousWellData(){
+    localStorage.removeItem('userToken')
+    this.userService.getAnonymousWell().subscribe((data : any)=>{
+     this.router.navigate(['/home']);
+   });
+  }
+
+  
 
 }

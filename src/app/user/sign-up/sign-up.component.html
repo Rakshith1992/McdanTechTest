@@ -1,19 +1,19 @@
 
       <form class="col s12 white"  (ngSubmit)="onSubmit(UserName.value,Password.value)">
         <div class="row">
-          <div class="input-field col s6">
+          <div class="input-field col s12">
             <label>Username</label>  
             <input type="text" name="UserName" #UserName="ngModel" [(ngModel)]="user.Username" required>   
           </div>  
         </div>
         <div class="row">
-          <div class="input-field col s6">
+          <div class="input-field col s12">
             <label>Password</label>
             <input type="password" name="Password" #Password="ngModel" [(ngModel)]="user.Password" required>      
           </div>  
         </div>
         <div class="row">
-          <div class="input-field col s6">
+          <div class="input-field col s12">
             <button class="btn-large btn-submit" type="submit" >Submit</button>     
           </div>    
         </div>

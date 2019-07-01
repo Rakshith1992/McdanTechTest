@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { UserService } from '../shared/user.service';
 //import { HttpErrorResponse } from '@angular/common/http';
 import { Well } from '../shared/well.model';
+import { User } from '../shared/user.model';
 
 @Component({
   selector: 'app-home',
@@ -18,16 +19,33 @@ export class HomeComponent implements OnInit {
   wellID: number;
   currentItemId: any;
   tempWells : any;
+  userData : any;
+  user: User;
+  token: any;
+  history = []
+  
   //isWellError : boolean = false;
 
-  constructor(private router: Router, private wellService: UserService) { }
+  constructor(private router: Router, private wellService: UserService) { 
+    
+     // this.userData = this.router.getCurrentNavigation().extras.state.well
+     this.token = localStorage.getItem('userToken');
+  
+    
+    //console.log('token: ', token);
+  }
 
   ngOnInit() {
+    this.user = new User;
     this.filterId= 1;
   }
 
-  Logout() {
+  logout() {
     localStorage.removeItem('userToken');
+    this.router.navigate(['/login']);
+  }
+
+  back(){
     this.router.navigate(['/login']);
   }
 
@@ -72,9 +90,9 @@ export class HomeComponent implements OnInit {
     }
   
 
-    crudOperation(){
+   /*  crudOperation(){
       this.router.navigate(['/crud']);
-    }  
+    } */  
 
     deleteAWell(event: Event){
       console.log("DELETE", event);
@@ -87,6 +105,19 @@ export class HomeComponent implements OnInit {
     editAWell(event: Event){
       console.log(event)
       this.router.navigate(['/crud'], {state: {well: event}});
+    }
+
+    getHistory(event: Event){
+      console.log(event);
+      let data = []
+      this.wellService.getWellHistory(event).subscribe((data : any[])=>{
+        console.log(data)
+        data.forEach(element => {
+          console.log(element)
+          this.history.push(element)
+        });
+      });
+      this.router.navigate(['/history'], {state: {history: this.history}});
     }
 
 }
