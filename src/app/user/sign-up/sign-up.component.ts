@@ -3,6 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule, ReactiveFormsModule, Form, NgForm } from '@angular/forms';
 import { User } from '../../shared/user.model';
 import { UserService } from '../../shared/user.service';
+import { Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-sign-up',
@@ -12,50 +15,23 @@ import { UserService } from '../../shared/user.service';
 })
 export class SignUpComponent implements OnInit {
   user : User;
+  isRegistrationError : boolean = false;
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private router: Router, private toastr:ToastrService) { }
 
   ngOnInit() {
     this.user=new User;
-    this.resetForm();
-  }
-
-  resetForm(form?: NgForm){
-    if(form! = null){
-      form.reset();
-      this.user= {
-      Username: '',
-      Password: ''
-      };
-    }
   }
 
   onSubmit(userName,password){
-      this.userService.registerNewUser(this.user).subscribe(
-      response =>{
-        if(response == true){
-          console.log('User' + this.user.Username + 'has been created');
-          //this.resetForm(form);
-        }
-        //
-        else{
-          error => {
-            console.log(error.error);
-        }
-       
-        }
-      },
-
-        
-    ); 
-
-  }
-
+    this.userService.registerNewUser(this.user).subscribe(data=>{
+      this.toastr.success("User registration successful");
+      this.router.navigate(['/login']);
+    },
+    (err : HttpErrorResponse)=>{
+      this.isRegistrationError = true;
+    });
+  } 
+      
+  
 }
-
-
-/* this.userService.registerNewUser(form.value)
-      .subscribe((data:any) =>{
-        if(data.succeeded == true)
-          this.resetForm(form);
-      }); */

@@ -11,10 +11,10 @@ import { Router } from '@angular/router';
 export class CreateComponent implements OnInit {
   currentWell: any;
   well:Well;
+  
   constructor(private createService:UserService, private router: Router) { 
     if( this.router.getCurrentNavigation().extras.state) {
       this.currentWell = this.router.getCurrentNavigation().extras.state.well
-      console.log("DATATA: ",this.currentWell)
     }
   }
 
@@ -33,19 +33,13 @@ export class CreateComponent implements OnInit {
 
   OnSubmit(uwid,wellName,licenseNumber,area,field,totalDepth,drillDate,status){
     if(this.currentWell) {
-      console.log("Latest:", this.currentWell);
       this.createService.updateCreateWell(this.currentWell).subscribe(data=>{
-        console.log("Data", data);
-        this.router.navigate(['/home']);
       }); 
+    this.router.navigate(['/home']);
     } else {
-      this.createService.postCreateWell(this.well).subscribe(data=>{
-        console.log("Data", data);
-        this.router.navigate(['/home']);
-  
+      this.createService.postCreateWell(this.well).subscribe(data=>{   
       });
-    }
-    
+    this.router.navigate(['/home']);
+    }  
   }
-
 }

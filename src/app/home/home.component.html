@@ -1,20 +1,21 @@
 <nav>
-    <div class="nav-wrapper">
-      <a href="#" class="brand-logo center">
-        <i class="material-icons">cloud</i>MCDAN Web Application</a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li>
-          <a *ngIf="token"  (click)="logout()">LOGOUT</a>
-          <a *ngIf="!token"  (click)="back()">BACK</a>
-        </li>
-      </ul>
-    </div>
+  <div class="nav-wrapper">
+    <a href="#" class="brand-logo center">
+      <i class="material-icons">cloud</i>MCDAN Web Application
+    </a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li>
+        <a *ngIf="token"  (click)="logout()">LOGOUT</a>
+        <a *ngIf="!token"  (click)="back()">BACK</a>
+      </li>
+    </ul>
+  </div>
 </nav>
 
 
 <div class="row">
   <div class="input-field col s2">
-      <h5>Display All Wells</h5>
+    <h5>Display All Wells</h5>
     <button type="button" class="btn btn-primary" (click)="viewWell()">View Wells</button>
   </div>
 
@@ -22,8 +23,8 @@
     <h5>Select an ID</h5>
     <mat-form-field>
       <mat-label>Filter By ID</mat-label>
-      <mat-select [(ngModel)]="wellID"  (ngModelChange)="viewWell1($event)">
-        <mat-option *ngFor="let item of tempWells" [value]="item.id">
+      <mat-select [(ngModel)]="wellID"  (ngModelChange)="viewWellByID($event)">
+        <mat-option *ngFor="let item of wellValue" [value]="item.id">
           {{item.id}}
         </mat-option>
       </mat-select>                                                                 
@@ -31,66 +32,54 @@
   </div>
 
   <div class="input-field col s2">
-      <h5>Filter By UWID</h5>
-      <mat-form-field>
-        <mat-label>Select an UWID</mat-label>
-        <mat-select [(ngModel)]="UWID"  (ngModelChange)="getUWID($event)">
-          <mat-option *ngFor="let item of tempWells" [value]="item.uwid">
-            {{item.uwid}}
-          </mat-option>
-        </mat-select>                                                                 
-      </mat-form-field>
-    </div>
+    <h5>Filter By UWID</h5>
+    <mat-form-field>
+      <mat-label>Select an UWID</mat-label>
+      <mat-select [(ngModel)]="UWID"  (ngModelChange)="getUWID($event)">
+        <mat-option *ngFor="let item of wellValue" [value]="item.uwid">
+          {{item.uwid}}
+        </mat-option>
+      </mat-select>                                                                 
+    </mat-form-field>
+  </div>
 
-    <div class="input-field col s2">
-        <h5 *ngIf="token" >Create A Well</h5>
-      <button *ngIf="token" type="button" class="btn btn-primary" (click)="crudOperation()">CREATE WELL</button>
-    </div>
-
-   <!--  <div class="input-field col s2">
-        <h5 *ngIf="token" >Check History</h5>
-      <button *ngIf="token" type="button" class="btn btn-primary" (click)="checkHistory()">CHECK HISTORY </button>
-    </div> -->
+  <div class="input-field col s2">
+    <h5 *ngIf="token" >Create A Well</h5>
+    <button *ngIf="token" type="button" class="btn btn-primary" (click)="createWell()">CREATE WELL</button>
+  </div>
+</div>  
 
 <div  class="table-responsive table-wrapper-scroll-y my-custom-scrollbar">     
-    <table  class="table table-bordered table-striped mb-0">
-        <!-- <table matSort (matSortChange)="sortData($event)" matSortActive="Amount" matSortStart="desc" class="table table-bordered table-striped mb-0" > -->
-      <tr>
-        <th ></th>
-        <th mat-sort-header="ID">ID</th>
-        <th mat-sort-header="UWID" >UWID</th>
-        <th mat-sort-header="WELLNAME">WELL NAME</th>
-        <th mat-sort-header="LICENSENUMBER">LICENSE NUMBER</th>
-        <th mat-sort-header="AREA">AREA</th>
-        <th mat-sort-header="FIELD">FIELD</th>
-        <th mat-sort-header="TOTALDEPTH">TOTAL DEPTH</th>
-        <th mat-sort-header="DRILLDATE">DRILL DATE</th>
-        <th mat-sort-header="STATUS">STATUS</th>
-        <th *ngIf="token" mat-sort-header="STATUS">DELETE</th>
-        <th *ngIf="token"  mat-sort-header="STATUS">EDIT</th>
-        <th *ngIf="token"  mat-sort-header="HISTORY">HISTORY</th>
-
-        <!-- <th mat-sort-header="Category" *ngIf="showCategory">Category</th> -->
-      </tr>
+  <table  class="table table-bordered table-striped mb-0">
+    <tr>
+      <th mat-sort-header="ID">ID</th>
+      <th mat-sort-header="UWID" >UWID</th>
+      <th mat-sort-header="WELLNAME">WELL NAME</th>
+      <th mat-sort-header="LICENSENUMBER">LICENSE NUMBER</th>
+      <th mat-sort-header="AREA">AREA</th>
+      <th mat-sort-header="FIELD">FIELD</th>
+      <th mat-sort-header="TOTALDEPTH">TOTAL DEPTH</th>
+      <th mat-sort-header="DRILLDATE">DRILL DATE</th>
+      <th mat-sort-header="STATUS">STATUS</th>
+      <th *ngIf="token" mat-sort-header="STATUS">DELETE</th>
+      <th *ngIf="token"  mat-sort-header="STATUS">EDIT</th>
+      <th *ngIf="token"  mat-sort-header="HISTORY">HISTORY</th>
+    </tr>
     
-      <tr *ngFor="let item of wellData">
-        <td></td>
-        <td>{{item.id}}</td>
-        <td>{{item.uwid}}</td>
-        <td>{{item.wellName}}</td>
-        <td>{{item.licenseNumber}}</td>
-        <td>{{item.area}}</td>
-        <td>{{item.field}}</td>
-        <td>{{item.totalDepth}}</td>
-        <td>{{item.drillDate}}</td>
-        <td>{{item.status}}</td>
-        <td *ngIf="token" ><button type="button" class="btn btn-primary" (click)="deleteAWell(item.id)">Delete</button></td>
-        <td *ngIf="token" ><button type="button" class="btn btn-primary" (click)="editAWell(item)">Edit</button></td>
-        <td *ngIf="token" ><button type="button" class="btn btn-primary" (click)="getHistory(item.id)">HISTORY</button></td>
-      </tr>
-    </table>
-
-   
-    
+    <tr *ngFor="let item of wellData">
+      <td>{{item.id? item.id : 'NA' }}</td>
+      <td>{{item.uwid? item.uwid :'NA' }}</td>
+      <td>{{item.wellName? item.wellName :'NA'}}</td>
+      <td>{{item.licenseNumber? item.licenseNumber :'NA'}}</td>
+      <td>{{item.area ? item.area : 'NA' }}</td>
+      <td>{{item.field? item.field :'NA'}}</td>
+      <td>{{item.totalDepth? item.totalDepth :'NA'}}</td>
+      <td>{{item.drillDate? item.drillDate :'NA'}}</td>
+      <td>{{item.status? item.status :'NA'}}</td>
+      <td *ngIf="token" ><button type="button" class="btn btn-primary" (click)="deleteAWell(item.id)">Delete</button></td>
+      <td *ngIf="token" ><button type="button" class="btn btn-primary" (click)="editAWell(item)">Edit</button></td>
+      <td *ngIf="token" ><button type="button" class="btn btn-primary" (click)="getHistory(item.id)">HISTORY</button></td>
+    </tr>
+  </table>
 </div>
   

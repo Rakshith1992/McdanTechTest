@@ -1,43 +1,38 @@
 <nav>
-    <div class="nav-wrapper">
-      <a href="#" class="brand-logo center">
-        <i class="material-icons">cloud</i>MCDAN Web Application</a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li>
-          <a *ngIf="user" (click)="logout()">LOGOUT</a>
-          <a *ngIf="!user" (click)="back()">BACK</a>
-        </li>
-      </ul>
-    </div>
-</nav>
+  <div class="nav-wrapper">
+    <a href="#" class="brand-logo center">
+      <i class="material-icons">cloud</i>MCDAN Web Application
+    </a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li>
+        <a *ngIf="user" (click)="logout()">LOGOUT</a>
+        <a *ngIf="!user" (click)="back()">BACK</a>
+      </li>
+    </ul>
+  </div>
+</nav>  
 
 
 
 <div  class="table-responsive table-wrapper-scroll-y my-custom-scrollbar">     
-    <table  class="table table-bordered table-striped mb-0">
-        <!-- <table matSort (matSortChange)="sortData($event)" matSortActive="Amount" matSortStart="desc" class="table table-bordered table-striped mb-0" > -->
-      <tr>
-        <th ></th>
-        <th mat-sort-header="ID">ID</th>
-        <th mat-sort-header="changeDate" >Change ID</th>
-        <th mat-sort-header="admin">Admin</th>
-        <th mat-sort-header="action">Action</th>
-        <th mat-sort-header="wellId">Well ID</th>
-        <th mat-sort-header="uwID">UWID</th>
-      </tr>
+  <table  class="table table-bordered table-striped mb-0">
+    <tr>
+      <th mat-sort-header="ID">ID</th>
+      <th mat-sort-header="changeDate" >Change ID</th>
+      <th mat-sort-header="admin">Admin</th>
+      <th mat-sort-header="action">Action</th>
+      <th mat-sort-header="wellId">Well ID</th>
+      <th mat-sort-header="uwID">UWID</th>
+    </tr>
     
-      <tr *ngFor="let item of history">
-        <td></td>
-        <td>{{item.id}}</td>
-        <td>{{item.changeDate}}</td>
-        <td>{{item.admin}}</td>
-        <td>{{item.action}}</td>
-        <td>{{item.wellId}}</td>
-        <td>{{item.uwID}}</td>
-      </tr>
-    </table>
-
-   
-    
+    <tr *ngFor="let item of history">
+      <td>{{item.id? item.id: 'NA'}}</td>
+      <td>{{item.changeDate? item.changeDate: 'NA'}}</td>
+      <td>{{item.admin? item.admin: 'NA'}}</td>
+      <td>{{item.action? item.action: 'NA'}}</td>
+      <td>{{item.wellId? item.wellId: 'NA'}}</td>
+      <td>{{item.uwid? item.uwid: 'NA'}}</td>
+    </tr>
+  </table>
 </div>
   

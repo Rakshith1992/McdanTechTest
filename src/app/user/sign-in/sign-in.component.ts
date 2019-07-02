@@ -12,22 +12,17 @@ import { User } from '../../shared/user.model';
 export class SignInComponent implements OnInit {
   user: User;
   isLoginError : boolean = false;
-  constructor(private userService : UserService,private router : Router) { }
 
+  constructor(private userService : UserService,private router : Router) { }
+  
   ngOnInit() {
     this.user=new User;
   }
 
   OnSubmit(userName,password){
-   // console.log("USER: ", this.user);
-    let userD= {};
-    userD =this.user;
-     this.userService.userAuthentication(this.user).subscribe((data : any)=>{
-       console.log(data);
-       console.log("USER: ", this.user);
-      localStorage.setItem('userToken',data.token);
-      console.log(localStorage.getItem('userToken'))
-      this.router.navigate(['/home']);
+    this.userService.userAuthentication(this.user).subscribe((data : any)=>{
+    localStorage.setItem('userToken',data.token);
+    this.router.navigate(['/home']);
     },
     (err : HttpErrorResponse)=>{
       this.isLoginError = true;
@@ -35,12 +30,9 @@ export class SignInComponent implements OnInit {
   }
 
   anonymousWellData(){
-    localStorage.removeItem('userToken')
+    localStorage.removeItem('userToken');
     this.userService.getAnonymousWell().subscribe((data : any)=>{
      this.router.navigate(['/home']);
    });
   }
-
-  
-
 }

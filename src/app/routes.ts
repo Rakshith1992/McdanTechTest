@@ -3,7 +3,6 @@ import { HomeComponent } from './home/home.component';
 import { UserComponent } from './user/user.component';
 import { SignUpComponent } from './user/sign-up/sign-up.component';
 import { SignInComponent } from './user/sign-in/sign-in.component';
-import { AuthGuard } from './auth/auth.guard';
 import { HistoryComponent } from './history/history.component';
 import { CreateComponent } from './create-well/create.component';
 
@@ -19,7 +18,5 @@ export const appRoutes: Routes = [
         path: 'login', component: UserComponent,
         children: [{ path: '', component: SignInComponent }]
     },
-    { path : '', redirectTo:'/login', pathMatch : 'full'}
-
-    
+    { path : '', redirectTo:'/login', pathMatch : 'full'}    
 ];

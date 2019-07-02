@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Component } from '@angular/core';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,28 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   providers: []
 })
 export class AppComponent{
-  title = 'CodingExercise';
-  register;
+  title = 'MCDAN';
 
-  constructor(){
-
-  }
-
-  /* ngOnInit(){
-    this.register = {
-      username: '',
-      password: ''
-    };
-  } */
-
-  /* registerUser(){
-    this.registerService.registerNewUser(this.register).subscribe(
-      response =>{
-        console.log('User' + this.register.username + 'has been created');
-      },
-      error => {
-        console.log('error', error);
-      }  
-    );
-  } */
+  constructor(){}
 }

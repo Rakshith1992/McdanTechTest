@@ -9,11 +9,11 @@ import { Router } from '@angular/router';
 export class HistoryComponent implements OnInit {
 
   history : any;
-  wellHistory = []
+  wellHistory = [];
+
   constructor( private router: Router ) {
-    this.history = this.router.getCurrentNavigation().extras.state.history
-    console.log(this.history)
-   }
+    this.history = this.router.getCurrentNavigation().extras.state.history;
+  }
 
   ngOnInit() {
   }
@@ -21,5 +21,4 @@ export class HistoryComponent implements OnInit {
   back(){
     this.router.navigate(['/home']);
   }
-
 }
