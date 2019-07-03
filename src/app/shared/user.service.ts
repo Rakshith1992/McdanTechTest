@@ -133,6 +133,7 @@ export class UserService {
 
 
   updateCreateWell(well:Well){
+    let id= well.id;
     let data = {
       uwid: well.uwid,
       wellName: well.wellName,
@@ -149,7 +150,7 @@ export class UserService {
         'Content-Type': 'application/json',
         'Authorization': "Token" + " " + localStorage.getItem('userToken')
       });
-      return this.http.put(`https://mcdan-coding-exercise.azurewebsites.net/api/v1/well/`,data, {headers:reqHeader});  
+      return this.http.put(`https://mcdan-coding-exercise.azurewebsites.net/api/v1/well/${id}`,data, {headers:reqHeader});  
     }else{
       reqHeader = new HttpHeaders({ 
         'Content-Type': 'application/json',

@@ -32,7 +32,7 @@ export class SignInComponent implements OnInit {
   anonymousWellData(){
     localStorage.removeItem('userToken');
     this.userService.getAnonymousWell().subscribe((data : any)=>{
-     this.router.navigate(['/home']);
+    this.router.navigate(['/home']);
    });
   }
 }

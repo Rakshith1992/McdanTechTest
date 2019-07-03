@@ -22,7 +22,7 @@
 <form #loginForm="ngForm" class="col s12 white" (ngSubmit)="OnSubmit(well.uwid,well.wellName,well.licenseNumber,well.area,well.field,well.totalDepth,well.drillDate,well.status)">
   
   <div class="row">
-    <div *ngIf= "currentWell" class="input-field col s12">
+    <div *ngIf= "currentWell" class="input-field col s12 ">
       <input type="text" #uwid ngModel name="uwid" placeholder = "UWID" [(ngModel)]="currentWell.uwid" required>
     </div>
     <div *ngIf= "!currentWell" class="input-field col s12">

@@ -12,10 +12,10 @@ const forceSSL = function(){
     }
 }
 
-app.use(express.static(__dirname + '/dist/CodingExercise'));
+app.use(express.static(__dirname + '/dist/MCDANTest'));
 
 app.get('/*', function(req,res){
-    res.sendFile(path.join(__dirname + '/dist/CodingExercis/index.html'));
+    res.sendFile(path.join(__dirname + '/dist/MCDANTest/index.html'));
 });   
 
 

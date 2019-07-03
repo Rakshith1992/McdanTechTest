@@ -15,12 +15,10 @@
 
 <div class="row">
   <div class="input-field col s2">
-    <h5>Display All Wells</h5>
     <button type="button" class="btn btn-primary" (click)="viewWell()">View Wells</button>
   </div>
 
   <div class="input-field col s2">
-    <h5>Select an ID</h5>
     <mat-form-field>
       <mat-label>Filter By ID</mat-label>
       <mat-select [(ngModel)]="wellID"  (ngModelChange)="viewWellByID($event)">
@@ -32,7 +30,6 @@
   </div>
 
   <div class="input-field col s2">
-    <h5>Filter By UWID</h5>
     <mat-form-field>
       <mat-label>Select an UWID</mat-label>
       <mat-select [(ngModel)]="UWID"  (ngModelChange)="getUWID($event)">
@@ -44,13 +41,12 @@
   </div>
 
   <div class="input-field col s2">
-    <h5 *ngIf="token" >Create A Well</h5>
     <button *ngIf="token" type="button" class="btn btn-primary" (click)="createWell()">CREATE WELL</button>
   </div>
 </div>  
 
-<div  class="table-responsive table-wrapper-scroll-y my-custom-scrollbar">     
-  <table  class="table table-bordered table-striped mb-0">
+<div>     
+  <table matSort class=" responsive-table striped  ">
     <tr>
       <th mat-sort-header="ID">ID</th>
       <th mat-sort-header="UWID" >UWID</th>
