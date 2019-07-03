@@ -1,27 +1,30 @@
-# CodingExercise
+                              
+                              Mcdan Technical Test
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.9.
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Description:
 
-## Code scaffolding
+XYZ Corporation is an oil and gas producer located in Alberta. Currently they manage their wells through an Excel spreadsheet that is shared around the office. This is causing problems, as there are different versions of the well list and its hard to verify if they are updating the latest version. XYZ Corporation would like you to build a Well Management System (WMS) to help them manage their wells.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Pre-requisites: 1 - Install NodeJS Follow the link - https://nodejs.org/en/download/
 
-## Build
+2 - Install Angular CLI using the following command (CLI) npm install -g @angular/cli@7.3.9
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Clone the repository Run the following commands in the CLI git clone git@github.com:Rakshith1992/McdanTechTest.git cd McdanTechTest
 
-## Running unit tests
+Run the following commands on the terminal
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+(To install the dependencies) npm i
 
-## Running end-to-end tests
+(To build the application and host it on your local server) ng serve
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Open the following link on any browser
 
-## Further help
+https://localhost:4200/
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+OR
+
+The application has been hosted in Heroku. You could access it using the following link:
+
+URL: https://mcdan.herokuapp.com
